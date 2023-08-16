@@ -9,11 +9,8 @@ from ultralytics import YOLO
 
 @st.cache_data()
 def load_model():
-    try:
-        model = YOLO("./best.pt")
-    except Exception as e:
-        st.error(f"Erro ao carregar o modelo: {e}")
-        model = None
+    model = YOLO("best.pt")
+    
     return model
 
 
