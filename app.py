@@ -7,11 +7,17 @@ import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
 
+st.cache.clear()
 
 @st.cache_data()
 def load_model():
-    model = YOLO("best.pt")
+    try:
+        model = YOLO("best.pt")
+    except Exception as e:
+        st.error(f"Erro ao carregar o modelo: {e}")
+        model = None
     return model
+
 
 
 def predict_fish_length(image_path, line):
