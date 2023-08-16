@@ -13,7 +13,7 @@ from ultralytics import YOLO
 @st.cache_data()
 # Função para baixar arquivo do Google Drive
 def download_file_from_google_drive(file_id, destination):
-    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?export=download"
+    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing"
 
     session = requests.Session()
 
