@@ -1,8 +1,6 @@
 import os
 import tempfile
-import gdown
 import cv2
-import requests
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
@@ -11,35 +9,8 @@ from ultralytics import YOLO
 
 
 @st.cache_data()
-# Função para baixar arquivo do Google Drive
-def download_file_from_google_drive(file_id, destination):
-    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing"
-
-    session = requests.Session()
-
-    response = session.get(URL, params={"id": file_id}, stream=True)
-    token = None
-    for key, value in response.cookies.items():
-        if key.startswith("download_warning"):
-            token = value
-
-    if token:
-        params = {"id": file_id, "confirm": token}
-        response = session.get(URL, params=params, stream=True)
-
-    with open(destination, "wb") as f:
-        for chunk in response.iter_content(32768):
-            if chunk:
-                f.write(chunk)
-
 def load_model():
-    model_file_id = "1-prGiFywqliEygw0enKA5VPuVBDW7E64"
-    model_temp_path = os.path.join(tempfile.gettempdir(), "best.pt")
-
-    if not os.path.exists(model_temp_path):
-        download_file_from_google_drive(model_file_id, model_temp_path)
-
-    model = YOLO(model_temp_path)
+    model = YOLO("best.pt")
     return model
 
 
