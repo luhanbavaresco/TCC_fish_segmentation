@@ -7,8 +7,6 @@ import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
 
-st.cache.clear()
-
 @st.cache_data()
 def load_model():
     try:
