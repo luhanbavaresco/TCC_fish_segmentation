@@ -1,7 +1,6 @@
+opencv-python-headless
+matplotlib
 numpy
 streamlit
-opencv
-matplotlib.pyplot
-PIL
+Pillow
 ultralytics==8.0.28
-os
