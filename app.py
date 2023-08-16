@@ -10,8 +10,30 @@ from ultralytics import YOLO
 
 
 @st.cache_data()
+# Função para baixar arquivo do Google Drive
+def download_file_from_google_drive(file_id, destination):
+    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=drive_link"
+    session = requests.Session()
+
+    response = session.get(URL, params={"id": file_id}, stream=True)
+    token = get_confirm_token(response)
+
+    if token:
+        params = {"id": file_id, "confirm": token}
+        response = session.get(URL, params=params, stream=True)
+
+    save_response_content(response, destination)
+# def load_model():
+#     model = YOLO("https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing")
+#     return model
 def load_model():
-    model = YOLO("https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing")
+    model_file_id = "1-prGiFywqliEygw0enKA5VPuVBDW7E64"
+    model_temp_path = os.path.join(tempfile.gettempdir(), "model.pt")
+
+    if not os.path.exists(model_temp_path):
+        download_file_from_google_drive(model_file_id, model_temp_path)
+
+    model = YOLO(model_temp_path)
     return model
 
 
