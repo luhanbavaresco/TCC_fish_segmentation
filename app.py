@@ -2,6 +2,7 @@ import os
 import tempfile
 import gdown
 import cv2
+import requests
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
