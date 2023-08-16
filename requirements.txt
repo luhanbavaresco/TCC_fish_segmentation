@@ -1,6 +1,5 @@
 numpy
 streamlit
-tempfile
 cv2
 matplotlib.pyplot
 PIL
