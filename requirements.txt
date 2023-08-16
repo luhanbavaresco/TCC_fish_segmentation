@@ -1,6 +1,6 @@
 numpy==1.25.2
 streamlit==1.25.0
-tempfile==3.11.4
+tempfile
 cv2==4.8.0
 matplotlib.pyplot==3.7.2
 PIL==10.0.0
