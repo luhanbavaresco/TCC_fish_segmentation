@@ -1,6 +1,6 @@
 numpy
 streamlit
-cv2
+opencv
 matplotlib.pyplot
 PIL
 ultralytics==8.0.28
