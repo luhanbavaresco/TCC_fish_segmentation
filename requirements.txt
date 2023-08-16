@@ -4,3 +4,5 @@ numpy
 streamlit
 Pillow
 ultralytics==8.0.28
+gdown==4.2.0
+
