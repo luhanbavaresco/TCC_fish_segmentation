@@ -1,6 +1,6 @@
 import os
 import tempfile
-
+import gdown
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,7 +11,7 @@ from ultralytics import YOLO
 
 @st.cache_data()
 def load_model():
-    model = YOLO("C:/Users/luhan/OneDrive/Área de Trabalho/TCC/ModeloYOLOv8/best.pt")
+    model = YOLO("https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing")
     return model
 
 
