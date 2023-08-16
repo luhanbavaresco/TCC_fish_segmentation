@@ -13,23 +13,28 @@ from ultralytics import YOLO
 @st.cache_data()
 # Função para baixar arquivo do Google Drive
 def download_file_from_google_drive(file_id, destination):
-    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=drive_link"
+    URL = "https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?export=download"
+
     session = requests.Session()
 
     response = session.get(URL, params={"id": file_id}, stream=True)
-    token = get_confirm_token(response)
+    token = None
+    for key, value in response.cookies.items():
+        if key.startswith("download_warning"):
+            token = value
 
     if token:
         params = {"id": file_id, "confirm": token}
         response = session.get(URL, params=params, stream=True)
 
-    save_response_content(response, destination)
-# def load_model():
-#     model = YOLO("https://drive.google.com/file/d/1-prGiFywqliEygw0enKA5VPuVBDW7E64/view?usp=sharing")
-#     return model
+    with open(destination, "wb") as f:
+        for chunk in response.iter_content(32768):
+            if chunk:
+                f.write(chunk)
+
 def load_model():
     model_file_id = "1-prGiFywqliEygw0enKA5VPuVBDW7E64"
-    model_temp_path = os.path.join(tempfile.gettempdir(), "model.pt")
+    model_temp_path = os.path.join(tempfile.gettempdir(), "best.pt")
 
     if not os.path.exists(model_temp_path):
         download_file_from_google_drive(model_file_id, model_temp_path)
