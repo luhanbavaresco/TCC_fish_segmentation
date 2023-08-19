@@ -11,16 +11,16 @@ from PIL import Image
 from ultralytics import YOLO
 
 # @st.cache_data()
-model_path = Path(settings.MODEL_DIR)
-def load_model(model_path):
-    model = YOLO(model_path)
+# model_path = Path(settings.MODEL_DIR)
+def load_model():
+    model = YOLO(Path(settings.MODEL_DIR))
     
     return model
 
 
 
 def predict_fish_length(image_path, line):
-    model = load_model(model_path)
+    model = load_model()
 
     # Verificar se o arquivo de imagem existe
     if not os.path.exists(image_path):
