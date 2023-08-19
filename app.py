@@ -4,6 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
+import torch
 from PIL import Image
 from ultralytics import YOLO
 
