@@ -8,7 +8,7 @@ import torch
 from PIL import Image
 from ultralytics import YOLO
 
-@st.cache_data()
+# @st.cache_data()
 def load_model():
     model = YOLO("best.pt")
     
