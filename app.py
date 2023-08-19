@@ -10,7 +10,7 @@ from pathlib import Path
 from PIL import Image
 from ultralytics import YOLO
 
-# @st.cache_data()
+@st.cache_data()
 # model_path = Path(settings.MODEL_DIR)
 def load_model():
     model = YOLO(Path(settings.MODEL_DIR))
