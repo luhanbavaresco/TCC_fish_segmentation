@@ -4,3 +4,4 @@ numpy
 streamlit
 Pillow
 ultralytics==8.0.28
+torch==2.0.1
