@@ -6,18 +6,19 @@ import numpy as np
 import streamlit as st
 import torch
 import settings
+import helper
 from pathlib import Path
 from PIL import Image
 from ultralytics import YOLO
 
 @st.cache_data()
 model_path = Path(settings.MODEL_DIR)
-def load_model():
-    model = helper.load_model(model_path)
-    return model
+# def load_model():
+#     model = helper.load_model(model_path)
+#     return model
 
 def predict_fish_length(image_path, line):
-    model = load_model()
+    model = helper.load_model(model_path)
 
     # Verificar se o arquivo de imagem existe
     if not os.path.exists(image_path):
