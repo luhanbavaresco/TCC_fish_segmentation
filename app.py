@@ -11,13 +11,10 @@ from PIL import Image
 from ultralytics import YOLO
 
 @st.cache_data()
-# model_path = Path(settings.MODEL_DIR)
+model_path = Path(settings.MODEL_DIR)
 def load_model():
-    model = YOLO(Path(settings.MODEL_DIR))
-    
+    model = helper.load_model(model_path)
     return model
-
-
 
 def predict_fish_length(image_path, line):
     model = load_model()
