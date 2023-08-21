@@ -17,7 +17,7 @@ from ultralytics import YOLO
 #     model = helper.load_model(model_path)
 #     return model
 
-def predict_fish_length(image_path, line):
+def predict_fish_length(image_path, line, model_path):
     model = helper.load_model(model_path)
 
     # Verificar se o arquivo de imagem existe
@@ -124,7 +124,7 @@ def main():
             image_path = temp_file.name
 
         # Realizar a previsão e obter o resultado
-        comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 0)
+        comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 0, model_path)
 
         # Exibir informações e a imagem de saída
         st.write("Quantidade de peixes no tanque:", int(contador_peixes))
@@ -141,7 +141,7 @@ def main():
             with col1:
                 if st.button("Segmentação e comprimento"):
                     # Código para mostrar apenas uma linha
-                    comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 0)
+                    comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 0, model_path)
                     image = open(output_file, "rb").read()
                     desc = "Peixes segmentados e seu comprimento em cm"
                     # st.image(image, caption="Peixes segmentados e uma linha entre os dois pontos", use_column_width=True, clamp=True)
@@ -149,7 +149,7 @@ def main():
             with col2:
                 if st.button("Segmentação e linha mágica"):
                     # Código para mostrar apenas uma linha
-                    comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 1)
+                    comprimento_list, output_file, contador_peixes, peixes_tanque = predict_fish_length(image_path, 1, model_path)
                     image = open(output_file, "rb").read()
                     desc = "Peixes segmentados e a linha do comprimento"
                     # st.image(image, caption="Peixes segmentados e uma linha entre os dois pontos", use_column_width=True, clamp=True)
