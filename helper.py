@@ -1,8 +1,5 @@
 from ultralytics import YOLO
 import streamlit as st
-import cv2
-from pytube import YouTube
-
 import settings
 
 
