@@ -11,8 +11,8 @@ from pathlib import Path
 from PIL import Image
 from ultralytics import YOLO
 
-@st.cache_data()
-model_path = Path(settings.MODEL_DIR)
+# @st.cache_data()
+# model_path = Path(settings.MODEL_DIR)
 # def load_model():
 #     model = helper.load_model(model_path)
 #     return model
@@ -116,7 +116,7 @@ def main():
     st.caption("**OBSERVAÇÃO:**\n\n*Para uma maior precisão na estimativa inteligente de comprimento de peixes, deve-se seguir as observações abaixo:*\n\n\t1. Altura da água no tanque: 16.5 cm\n\n\t2. Distância entre câmera e o fundo do tanque: 78 cm\n\n\t3. Imagem sem reflexo da luz na água\n\n\t4. Imagem sem sombreamento")
 
     uploaded_file = st.file_uploader("\n\nEscolha uma imagem", type=["jpg", "jpeg", "png"])
-
+    model_path = Path(settings.MODEL_DIR)
     if uploaded_file is not None:
         # Salvar a imagem em um arquivo temporário
         with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_file:
